@@ -2,6 +2,20 @@
 
 **An evidence-first AI research assistant for cross-market medical expert interview analysis.**
 
+## System Screenshots
+
+### Dashboard Overview
+![Dashboard View](./assets/dashboard_view.png)
+
+### Cross-Market Comparison
+![Comparison View](./assets/comparison_view.png)
+
+### Ask Across Interviews
+![Ask Assistant View](./assets/ask_view.png)
+
+### Immutable Evidence Drawer
+![Evidence Drawer](./assets/evidence_drawer.png)
+
 ---
 
 ## Problem Statement

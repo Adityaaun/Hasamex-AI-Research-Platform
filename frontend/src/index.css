@@ -1,6 +1,70 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
 body {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: #070a12;
+  color: #f8fafc;
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-[#0f1525]/80 backdrop-blur-md border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-[#111827]/80 backdrop-blur-md border border-white/5;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400;
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+  }
+  
+  .glow-md {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+  }
+
+  .glow-violet {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+  
+  .glow-border {
+    @apply border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.3)];
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Custom Scrollbar for Drawer/Panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }

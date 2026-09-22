@@ -66,7 +66,7 @@ class RAGService:
             if evidence.quote and evidence.quote not in original_text:
                 logger.warning(f"Validation failed: Quote hallucination detected for chunk {evidence.chunk_id}. Fallback to original text.")
                 # Fallback: We can't trust the LLM's quote. We return the original chunk text instead.
-                final_quote = original_text
+                final_quote = f"[Exact quote could not be validated; showing the verified source passage.]\n\n{original_text}"
 
             # Step 3: Construct citation objects
             citation = {
@@ -132,7 +132,7 @@ class RAGService:
                     final_quote = claim.quote
                     if claim.quote and claim.quote not in original_text:
                         logger.warning(f"Validation failed: Quote hallucination for {claim.chunk_id}")
-                        final_quote = original_text
+                        final_quote = f"[Exact quote could not be validated; showing the verified source passage.]\n\n{original_text}"
                         
                     valid_claims_for_market.append({
                         "claim": claim.claim,

@@ -163,7 +163,7 @@ The application does **not** claim hallucinations are impossible. Instead:
 
 ### Current: 3 transcripts
 - 21 evidence chunks total
-- ChromaDB in-memory + local persistence
+- ChromaDB with local persistent storage
 - Single FastAPI process
 
 ### 30 transcripts
@@ -179,7 +179,7 @@ The application does **not** claim hallucinations are impossible. Instead:
 - Add pagination to the evidence API
 - Use market + topic metadata for pre-filtering before semantic search
 
-The RAG + validation architecture remains unchanged at any scale.
+The core RAG and evidence-validation pattern can be preserved as the corpus grows, while storage, ingestion, caching, and concurrency infrastructure would evolve.
 
 ---
 
@@ -273,7 +273,7 @@ GEMINI_MODEL=gemma-4-26b-a4b-it
 > Preserves semantic coherence — an expert's answer always embeds with the question that elicited it.
 
 **Why validate citations in the backend?**
-> LLMs hallucinate even with structured outputs. Server-side validation is the only reliable guarantee.
+> LLMs hallucinate even with structured outputs. Server-side validation provides a strong provenance check for citation IDs and quoted text.
 
 **How do you reduce hallucinations?**
 > Constraint + validation: the model only sees retrieved chunks, chunk IDs and quotes are validated against the originals, and `insufficient_evidence` is returned when the evidence doesn't support an answer.

@@ -87,7 +87,7 @@ def test_comparison_invalid_quote():
     assert result["status"] == "success"
     evidence = result["common_themes"][0]["evidence"]
     # Quote hallucination should fallback to original text
-    assert evidence["France"][0]["quote"] == "French adoption is slow."
+    assert evidence["France"][0]["quote"] == "[Exact quote could not be validated; showing the verified source passage.]\n\nFrench adoption is slow."
 
 def test_comparison_wrong_country():
     db = get_mock_db()

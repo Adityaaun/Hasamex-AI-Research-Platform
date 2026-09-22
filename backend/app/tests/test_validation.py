@@ -61,7 +61,7 @@ def test_hallucinated_quote_fallback(rag):
     result = rag.process_query("What is the issue?")
     assert len(result["citations"]) == 1
     # Because quote hallucinated, the backend should fallback to providing the full original_text
-    assert result["citations"][0]["exact_quote"] == "[01:20] Dr. Martin: The biggest issue is still capital budget approval."
+    assert result["citations"][0]["exact_quote"] == "[Exact quote could not be validated; showing the verified source passage.]\n\n[01:20] Dr. Martin: The biggest issue is still capital budget approval."
 
 def test_unsupported_answer(rag):
     rag.llm.mock_response = GeminiResponse(

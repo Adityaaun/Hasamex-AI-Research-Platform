@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+*.log
+
+# Environment variables — NEVER commit these
+.env
+*.env
+
+# ChromaDB vector store — large binary files, regenerate with python -m app.ingestion
+backend/chroma_db/
+
+# Node
+node_modules/
+dist/
+.next/
+coverage/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Scratch / temp files
+backend/test_chroma.py
+backend/test_chroma2.py
+backend/test_logic.py
+backend/test_e2e.py
+backend/test_audit.py
+backend/find_model.py
+backend/run_ask_api.py
+backend/run_comparison_api.py
+backend/comparison_test_results*.txt
+backend/ask_api_test_results.txt

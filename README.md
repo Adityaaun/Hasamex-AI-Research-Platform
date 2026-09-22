@@ -136,7 +136,7 @@ The application enforces evidence integrity at every stage:
 
 4. **Citation ID validation** — After Gemini generates a structured response, every `chunk_id` in its output is validated against the retrieved chunk map. Unknown IDs are silently dropped.
 
-5. **Exact quote validation** — The exact quote Gemini returns must appear verbatim in the original chunk text. If it does not, the system falls back to the original chunk text rather than displaying a hallucinated quote.
+5. **Exact quote validation** — The exact quote Gemini returns must appear verbatim in the original chunk text. If it cannot be validated, the UI explicitly labels the content as “Exact quote could not be validated; showing the verified source passage.” The system does not present the unverified text as an exact quotation.
 
 6. **Evidence Explorer** — The `GET /api/evidence/{chunk_id}` endpoint resolves a citation back to the original transcript file via ChromaDB metadata (never via a client-supplied path), parses the file, and returns the exact source turns plus surrounding context.
 
@@ -169,7 +169,7 @@ LLMs can hallucinate chunk IDs and quotes even with structured outputs. Backend 
 
 The application does **not** claim hallucinations are impossible. Instead:
 
-> "The application constrains generated answers to retrieved transcript evidence and validates citation IDs and exact quotes against the original source. A Gemini response that references a chunk_id not in the retrieval set is silently rejected. A quote that does not appear verbatim in the original text is replaced with the original chunk text. Answers that exceed the available evidence are flagged as `insufficient_evidence`."
+> "The application constrains generated answers to retrieved transcript evidence and validates citation IDs and exact quotes against the original source. A Gemini response that references a chunk_id not in the retrieval set is silently rejected. A quote that does not appear verbatim in the original text is explicitly marked as unverified, and the verified source passage is shown instead. Answers that exceed the available evidence are flagged as `insufficient_evidence`."
 
 ---
 
